@@ -6,7 +6,7 @@ namespace AudioDBFS
     {
         public static void Main(string[] args)
         {
-            string audioFile = @"C:\Users\jingj\mydata\temp\temp_audio\2\zhangwenhong.wav";
+            string audioFile = @"sample.wav";
             AudioDecibel.ReadAudioFile(audioFile);
             Console.WriteLine("done");
             Console.ReadKey();
