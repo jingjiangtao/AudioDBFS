@@ -1,52 +1,49 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using NAudio.Wave;
-using NAudio.Wave.SampleProviders;
 
 namespace AudioDBFS
 {
     public class AudioDecibel
     {
-        public static int SamplingRate = 16000;
+        public static double SamplingRate = 16000;
         public static double MaxVolume = 32768.0;
 
-        public static void ReadAudioFile(string audioFile)
+        public static TimeDecibel[] ReadAudioFile(string audioFile)
         {
             WaveFileReader audioFileReader = new WaveFileReader(audioFile);
             
             long length = audioFileReader.Length;
             byte[] data = new byte[length];
             audioFileReader.Read(data, 0, (int)length);
-            double[] decibels = CaptureAudio(data);
-            string fileName = Path.Combine(Path.GetDirectoryName(audioFile), "decibels.txt");
-            
-            using (StreamWriter sw = new StreamWriter(fileName))
-            {
-                foreach (double db in decibels)
-                {
-                    sw.WriteLine(db);
-                }
-            }
+            var decibels = CaptureAudio(data);
+            return decibels;
         }
 
-        public static double[] CaptureAudio(byte[] data)
+        public static TimeDecibel[] CaptureAudio(byte[] data)
         {
-            double[] decibels = new double[data.Length / 2];
+            double samplingTime = 1000 / SamplingRate; // ms
+            TimeDecibel[] decibels = new TimeDecibel[data.Length / 2];
             int j = 0;
             for (int i = 0; i < data.Length; i += 2)
             {                
-                double sample = BitConverter.ToInt16(data, i);
+                double sample = BitConverter.ToInt16(data, i);                
                 double volume = Math.Abs(sample / MaxVolume);
-                double decibel = 20 * Math.Log10(volume);                
-                decibels[j] = decibel;
+                double decibel = 20 * Math.Log10(volume);
+                TimeDecibel timeDecibel = new TimeDecibel();
+                timeDecibel.decibel = decibel;
+                timeDecibel.time = samplingTime * (j + 1);
+                decibels[j] = timeDecibel;
                 j++;
             }
 
             return decibels;
         }
+    }
+
+    public struct TimeDecibel
+    {
+        public double time; // ms
+        public double decibel;
     }
 }
