@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29806.167
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AudioDBFS", "AudioDBFS\AudioDBFS.csproj", "{678902DD-B0C9-42C4-9C4B-B0D7C47D07CB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{678902DD-B0C9-42C4-9C4B-B0D7C47D07CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{678902DD-B0C9-42C4-9C4B-B0D7C47D07CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{678902DD-B0C9-42C4-9C4B-B0D7C47D07CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{678902DD-B0C9-42C4-9C4B-B0D7C47D07CB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2FA281BB-EC3C-4C9D-8647-CCD595333388}
+	EndGlobalSection
+EndGlobal
